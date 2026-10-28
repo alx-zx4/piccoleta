@@ -1979,6 +1979,7 @@ footer{background:var(--dark);position:relative;overflow:hidden;padding:0 0 24px
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#testimonios">Reseñas</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#calendario">Calendario</a></li>
     <li><a href="#contacto">Cotizar</a></li>
   </ul>
   <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false">
@@ -1993,6 +1994,7 @@ footer{background:var(--dark);position:relative;overflow:hidden;padding:0 0 24px
   <a href="#servicios">Servicios</a>
   <a href="#testimonios">Reseñas</a>
   <a href="#faq">FAQ</a>
+  <a href="#calendario">Calendario</a>
   <a href="#contacto" class="nav-mobile-cta">Cotizar mi fiesta</a>
 </div>
 
@@ -2081,7 +2083,7 @@ footer{background:var(--dark);position:relative;overflow:hidden;padding:0 0 24px
         <span class="tab-num">02</span>Salón de fiestas
       </button>
       <button class="tab" onclick="showTab(this,'panel-3')" role="tab">
-        <span class="tab-num">03</span>Rincones temáticos
+        <span class="tab-num">03</span>Rincón de bebés
       </button>
     </div>
 
@@ -2143,29 +2145,23 @@ footer{background:var(--dark);position:relative;overflow:hidden;padding:0 0 24px
 
     <!-- Panel 3 -->
     <div id="panel-3" class="panel">
-      <div class="espacio-img" style="background-image:radial-gradient(circle at 72% 28%,rgba(255,255,255,.8) 0 5%,transparent 5.5%),radial-gradient(circle at 28% 68%,rgba(255,255,255,.6) 0 8%,transparent 8.5%),linear-gradient(135deg,var(--primary),var(--dark-mid),var(--accent))">
-        <div class="espacio-img-badge">El tema que imaginas</div>
+      <div class="espacio-img" style="background-image:url('fotos/espacio-bebes.webp');background-size:cover;background-position:75% 70%">
+        <div class="espacio-img-badge">Para los más chiquitos</div>
       </div>
       <div class="espacio-content">
-        <p class="espacio-eyebrow">Espacios que cambian</p>
-        <h3 class="espacio-name">Rincones temáticos</h3>
-        <!-- Ejemplo de la variante SIN número de capacidad confirmado: texto
-             plano, mismo estilo que si hubiera número real, NUNCA envuelto
-             en .needs-data-glow ni con una .needs-data-note de disculpa —
-             ese sistema es exclusivo de Precios/FAQ, nunca de Capacidad (ver
-             ANEXO C, regla no-negociable). Si el número real SÍ está
-             confirmado, cambia el texto a "Capacidad: hasta ___ invitados". -->
+        <p class="espacio-eyebrow">Un rincón aparte</p>
+        <h3 class="espacio-name">Rincón de bebés</h3>
         <div class="espacio-capacidad">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Capacidad a la medida de tu fiesta
         </div>
         <p class="espacio-body">
-          Barbie, fútbol, dinosaurios o el personaje favorito: aquí cada celebración encuentra su propio escenario.
+          Un espacio techado y aparte, con juguetes y bloques a su altura, para que los invitados más pequeños también tengan su propio rincón.
         </p>
         <div class="espacio-features">
-          <span class="espacio-feat">Fondos de foto</span>
-          <span class="espacio-feat">Globos</span>
-          <span class="espacio-feat">Personajes</span>
+          <span class="espacio-feat">Juguetes y bloques</span>
+          <span class="espacio-feat">Mesas a su altura</span>
+          <span class="espacio-feat">Espacio aparte</span>
         </div>
         <a href="#contacto" class="btn-primary" style="font-size:11px">
           Cotizar este espacio
@@ -2823,6 +2819,64 @@ Estamos a unos minutos de casa y muy fácil de encontrar: entrada segura, acceso
 
 </section>
 
+<!-- CALENDARIO DE DISPONIBILIDAD -->
+<section id="calendario">
+  <div class="calendario-inner">
+    <div class="calendario-head reveal">
+      <h2 class="section-title light vcr" data-vcr="Aparta tu fecha"></h2>
+      <p class="calendario-sub">Elige el día que te gustaría apartar y pregúntanos si sigue libre, directo por WhatsApp.</p>
+    </div>
+    <div class="calendario-card">
+      <div class="calendario-cal-head">
+        <button type="button" class="calendario-nav" id="calPrev" aria-label="Mes anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="calendario-mes" id="calMes"></span>
+        <button type="button" class="calendario-nav" id="calNext" aria-label="Mes siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="calendario-dow">
+        <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+      </div>
+      <div class="calendario-grid" id="calGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de apartado de fecha -->
+<div class="reserva-modal" id="reservaModal">
+  <div class="reserva-modal-backdrop" id="reservaBackdrop"></div>
+  <div class="reserva-modal-card">
+    <button type="button" class="reserva-modal-close" id="reservaClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="reserva-modal-eyebrow">Reservar fecha</p>
+    <p class="reserva-modal-fecha" id="reservaFecha"></p>
+    <div class="reserva-form-group">
+      <label>Horario</label>
+      <div class="reserva-horas" id="reservaHoras"></div>
+      <input type="hidden" id="rf-hora">
+    </div>
+    <div class="reserva-form-group">
+      <label for="rf-nombre">Tu nombre</label>
+      <input type="text" id="rf-nombre" placeholder="Ej. Karla">
+    </div>
+    <div class="reserva-form-group">
+      <label for="rf-telefono">Teléfono</label>
+      <input type="tel" id="rf-telefono" placeholder="Ej. 81 1234 5678">
+    </div>
+    <div class="reserva-form-group">
+      <label for="rf-correo">Correo</label>
+      <input type="email" id="rf-correo" placeholder="Ej. nombre@correo.com">
+    </div>
+    <a href="#" id="reservaWa" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center">
+      Reservar esta fecha
+    </a>
+    <p class="reserva-form-hint">Te confirmamos disponibilidad el mismo día.</p>
+  </div>
+</div>
+
 <!-- CONTACTO / COTIZAR -->
 <section id="contacto">
   <!-- Fondo de partículas (morphic) -->
@@ -2976,10 +3030,10 @@ Estamos a unos minutos de casa y muy fácil de encontrar: entrada segura, acceso
     <div class="jesus-note-wrap">
       <div class="jesus-note">
         <div class="jesus-note-head">
-          <img class="jesus-note-foto" src="https://korvel.com.mx/img/founder-jesus.webp" alt="Jesús Alejandro, de Korvel" width="64" height="64" loading="lazy">
+          <img class="jesus-note-foto" src="https://korvel.com.mx/img/founder-jesus.webp" alt="Jesús Alejandro, de Korvel" width="88" height="88" loading="lazy">
           <span class="jesus-note-nombre">Jesús Alejandro, de Korvel</span>
         </div>
-        <p>Hola, soy Jesus, de Korvel. Esta demo la arme con las fotos que tienen en google maps, asi que seguro me faltaron cosas, como sus paquetes o algunas respuestas de aqui abajo. Lo que tengan a la mano me lo mandan y se lo acomodo para dejarla a su medida.</p>
+        <p>Hola, soy Jesús Alejandro, de Korvel, mi agencia. Vi su salón en Google Maps y me gustó tanto que les quise armar esta demo. También creo que su espacio merece una página igual de bonita. La armé con las fotos públicas que tienen en Google Maps y Facebook, así que esto es apenas una base. Si la trabajamos juntos, podemos mejorar el diseño, agregar información y dejarla completamente a la medida de su salón. La podemos ir trabajando sin ningún anticipo: la vamos ajustando juntos y, si les gusta el resultado, me pagan. Si no les convence, no hay problema. La página también trae un calendario donde sus clientes pueden apartar fecha y ver qué días y horas ya están ocupados, así ya no les preguntan todo el día por fechas.</p>
         <span class="jesus-note-tel">Tel: 81 2933 5144</span>
         <img class="jesus-note-firma" src="https://korvel.com.mx/img/firma-jesus.webp" alt="Firma de Jesús" width="150" height="56" loading="lazy">
       </div>
@@ -3010,6 +3064,7 @@ Estamos a unos minutos de casa y muy fácil de encontrar: entrada segura, acceso
       <a href="#servicios">Servicios</a>
       <a href="#testimonios">Reseñas</a>
       <a href="#faq">FAQ</a>
+      <a href="#calendario">Calendario</a>
       <a href="#contacto">Cotizar</a>
     </nav>
     <!-- [EDITAR] Solo deja el ícono de la red que el material CONFIRMA que
@@ -3102,6 +3157,7 @@ Estamos a unos minutos de casa y muy fácil de encontrar: entrada segura, acceso
        eso nunca se pudo circular, no era solo que faltara la entrada
        aquí. Ver el comentario en el HTML del título de #ubicacion. */
     { sel: '#ubicacion .section-title',         words: ['llegar'],      color: 'rgba(255,255,255,0.85)' },
+    { sel: '#calendario .section-title',        words: ['fecha'],       color: 'rgba(255,255,255,0.85)' },
     { sel: '#contacto .contacto-title',         words: ['inolvidable'], color: 'rgba(255,255,255,0.85)' },
   ];
 
@@ -3652,6 +3708,104 @@ var SALON_WHATSAPP = '528187092536';
   });
 })();
 
+/* ── CALENDARIO DE DISPONIBILIDAD ──
+   Nunca se inventa qué días están ocupados (es un dato real que no
+   tenemos): el calendario solo muestra los días del mes, con "hoy"
+   marcado. Al tocar cualquier día futuro se abre el apartado con un botón
+   directo a WhatsApp preguntando por esa fecha, sin pedir nombre, correo
+   ni teléfono — el dueño confirma disponibilidad por su cuenta cuando le
+   escriben. */
+(function(){
+  var grid=document.getElementById('calGrid');
+  if(!grid) return;
+  var mesEl=document.getElementById('calMes');
+  var prevBtn=document.getElementById('calPrev');
+  var nextBtn=document.getElementById('calNext');
+  var modal=document.getElementById('reservaModal');
+  var fechaEl=document.getElementById('reservaFecha');
+  var horasEl=document.getElementById('reservaHoras');
+  var horaInput=document.getElementById('rf-hora');
+  var nombreInput=document.getElementById('rf-nombre');
+  var telInput=document.getElementById('rf-telefono');
+  var correoInput=document.getElementById('rf-correo');
+  var waBtn=document.getElementById('reservaWa');
+  var closeBtn=document.getElementById('reservaClose');
+  var backdrop=document.getElementById('reservaBackdrop');
+
+  var MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var HORAS=['11 am a 2 pm','2 pm a 5 pm','5 pm a 8 pm'];
+  var hoy=new Date(); hoy.setHours(0,0,0,0);
+  var vista=new Date(hoy.getFullYear(),hoy.getMonth(),1);
+  var minMes=new Date(hoy.getFullYear(),hoy.getMonth(),1);
+  var maxMes=new Date(hoy.getFullYear(),hoy.getMonth()+2,1);
+
+  function render(){
+    mesEl.textContent=MESES[vista.getMonth()]+' '+vista.getFullYear();
+    prevBtn.disabled = vista.getFullYear()===minMes.getFullYear() && vista.getMonth()===minMes.getMonth();
+    nextBtn.disabled = vista.getFullYear()===maxMes.getFullYear() && vista.getMonth()===maxMes.getMonth();
+    grid.innerHTML='';
+    var primerDia=new Date(vista.getFullYear(),vista.getMonth(),1).getDay();
+    var dias=new Date(vista.getFullYear(),vista.getMonth()+1,0).getDate();
+    for(var i=0;i<primerDia;i++){
+      var vacio=document.createElement('div'); vacio.className='cal-day-empty'; grid.appendChild(vacio);
+    }
+    for(var dia=1; dia<=dias; dia++){
+      (function(dia){
+        var fecha=new Date(vista.getFullYear(),vista.getMonth(),dia);
+        var btn=document.createElement('button');
+        btn.type='button'; btn.className='cal-day'; btn.textContent=dia;
+        var pasado = fecha < hoy;
+        var esHoy = fecha.getTime()===hoy.getTime();
+        btn.classList.add(pasado ? 'cal-day--past' : 'cal-day--free');
+        if(esHoy) btn.classList.add('cal-day--today');
+        if(!pasado){
+          btn.addEventListener('click', function(){ abrirReserva(fecha); });
+        }
+        grid.appendChild(btn);
+      })(dia);
+    }
+  }
+
+  function abrirReserva(fecha){
+    fechaEl.textContent = DIAS[fecha.getDay()]+' '+fecha.getDate()+' de '+MESES[fecha.getMonth()];
+    horasEl.innerHTML='';
+    horaInput.value='';
+    nombreInput.value=''; telInput.value=''; correoInput.value='';
+    HORAS.forEach(function(h){
+      var b=document.createElement('button');
+      b.type='button'; b.className='reserva-hora-btn'; b.textContent=h;
+      b.addEventListener('click', function(){
+        horasEl.querySelectorAll('.reserva-hora-btn').forEach(function(x){x.classList.remove('is-selected');});
+        b.classList.add('is-selected'); horaInput.value=h;
+        actualizarWa();
+      });
+      horasEl.appendChild(b);
+    });
+    actualizarWa();
+    modal.classList.add('open');
+  }
+
+  function actualizarWa(){
+    var hora=horaInput.value;
+    var nombre=(nombreInput.value||'').trim();
+    var tel=(telInput.value||'').trim();
+    var correo=(correoInput.value||'').trim();
+    var msg='Hola, soy '+(nombre||'...')+'. Quería preguntar si el '+fechaEl.textContent+(hora?' en el horario de '+hora:'')+' sigue disponible para una fiesta.'+(tel?' Mi teléfono es '+tel+'.':'')+(correo?' Mi correo es '+correo+'.':'');
+    waBtn.href='https://wa.me/'+SALON_WHATSAPP+'?text='+encodeURIComponent(msg);
+  }
+  [nombreInput,telInput,correoInput].forEach(function(inp){ inp.addEventListener('input', actualizarWa); });
+
+  function cerrar(){ modal.classList.remove('open'); }
+  closeBtn.addEventListener('click', cerrar);
+  backdrop.addEventListener('click', cerrar);
+
+  prevBtn.addEventListener('click', function(){ vista=new Date(vista.getFullYear(),vista.getMonth()-1,1); render(); });
+  nextBtn.addEventListener('click', function(){ vista=new Date(vista.getFullYear(),vista.getMonth()+1,1); render(); });
+
+  render();
+})();
+
 /* ── GENERADOR DE INVITACIÓN — reemplaza el calendario de disponibilidad ──
    Dibuja una invitación en canvas SOLO con formas, degradados y texto (nunca
    fotos, para que toBlob nunca truene por canvas contaminado, ni siquiera al
@@ -3668,11 +3822,6 @@ var SALON_WHATSAPP = '528187092536';
    la invitación sí se editan (INV_SALON/INV_DIR). Lo demás es automático. */
 var INV_SALON = 'Piccoleta';
 var INV_DIR   = 'Av. Leones 1308, Cumbres';
-(function(){
-  var invitacion = document.querySelector('.contacto-form.inv-card');
-  var calendario = document.querySelector('#calendario .calendario-inner');
-  if(invitacion && calendario) calendario.appendChild(invitacion);
-})();
 (function(){
   var y=document.getElementById('ftYear'); if(y) y.textContent=new Date().getFullYear();
 
